@@ -62,7 +62,17 @@ HTMLActuator.prototype.addTile = function (tile) {
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  inner.textContent = tile.value;
+
+  var num = document.createElement("span");
+  num.classList.add("tile-num");
+  num.textContent = tile.value;
+
+  var label = document.createElement("span");
+  label.classList.add("tile-color");
+  label.textContent = this.colorName(tile.value);
+
+  inner.appendChild(num);
+  inner.appendChild(label);
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
@@ -88,6 +98,17 @@ HTMLActuator.prototype.addTile = function (tile) {
 
   // Put the tile on the board
   this.tileContainer.appendChild(wrapper);
+};
+
+// The Color hierarchy of the Society, lowest to highest
+HTMLActuator.prototype.colorNames = {
+  2: "Red", 4: "Pink", 8: "Brown", 16: "Orange", 32: "Green", 64: "Blue",
+  128: "Yellow", 256: "Violet", 512: "Grey", 1024: "Obsidian", 2048: "Gold",
+  4096: "Peerless", 8192: "Sovereign"
+};
+
+HTMLActuator.prototype.colorName = function (value) {
+  return this.colorNames[value] || "Reaper";
 };
 
 HTMLActuator.prototype.applyClasses = function (element, classes) {
@@ -126,7 +147,7 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 
 HTMLActuator.prototype.message = function (won) {
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "You win!" : "Game over!";
+  var message = won ? "Hail, Reaper!" : "Broken.";
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;

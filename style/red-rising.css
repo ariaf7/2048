@@ -1,0 +1,179 @@
+/* ==========================================================
+   Red Rising theme for 2048 — overrides style/main.css
+   Tiles climb the Color hierarchy, from Red to Gold.
+   ========================================================== */
+
+:root {
+  --mars-night: #120b0a;
+  --mars-dust: #2a1714;
+  --mars-rust: #5a221b;
+  --ink: #e6d6c6;
+  --ink-dim: #a8917f;
+  --blood: #b3261e;
+  --gold: #e2b33c;
+  --gold-hi: #f8e08a;
+}
+
+html, body {
+  background: var(--mars-night);
+  background-image:
+    radial-gradient(ellipse at 50% -10%, rgba(179, 38, 30, 0.35), transparent 60%),
+    radial-gradient(ellipse at 50% 120%, rgba(90, 34, 27, 0.5), transparent 60%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  min-height: 100%;
+}
+
+h1.title {
+  font-family: "Cinzel", Georgia, serif;
+  font-weight: 900;
+  color: var(--blood);
+  letter-spacing: 2px;
+  text-shadow: 0 0 24px rgba(179, 38, 30, 0.45);
+  line-height: 1;
+}
+h1.title .title-sub {
+  display: block;
+  font-size: 15px;
+  letter-spacing: 6px;
+  color: var(--ink-dim);
+  font-weight: 700;
+  margin-top: 6px;
+  text-shadow: none;
+}
+
+a { color: var(--gold); }
+strong { color: #fff1e0; }
+strong.important { color: var(--blood); font-family: "Cinzel", Georgia, serif; }
+hr { border-bottom-color: rgba(230, 214, 198, 0.15); }
+
+.heading { margin-bottom: 18px; }
+
+/* Scores */
+.score-container, .best-container {
+  background: var(--mars-dust);
+  border: 1px solid rgba(226, 179, 60, 0.35);
+  color: var(--gold-hi);
+  font-family: "Cinzel", Georgia, serif;
+}
+.score-container:after, .best-container:after {
+  color: var(--ink-dim);
+  font-family: "Cinzel", Georgia, serif;
+  letter-spacing: 2px;
+}
+.score-container:after { content: "Merit"; }
+.best-container:after { content: "Glory"; }
+.score-container .score-addition, .best-container .score-addition {
+  color: rgba(248, 224, 138, 0.9);
+}
+
+/* Intro + buttons */
+.game-intro {
+  line-height: 1.4;
+  width: 330px;
+  font-size: 19px;
+  padding-top: 2px;
+}
+.restart-button,
+.game-container .game-message a {
+  background: var(--blood);
+  color: #fff3ea;
+  font-family: "Cinzel", Georgia, serif;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 0 #6e1410;
+}
+.restart-button:hover,
+.game-container .game-message a:hover { background: #cf3027; }
+
+/* Board */
+.game-container {
+  background: linear-gradient(160deg, #3a1d18, #1f100e);
+  border: 1px solid rgba(226, 179, 60, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0, 0, 0, 0.5);
+}
+.grid-cell {
+  background: rgba(0, 0, 0, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* Overlays */
+.game-container .game-message {
+  background: rgba(18, 11, 10, 0.78);
+  color: var(--ink);
+}
+.game-container .game-message p {
+  font-family: "Cinzel", Georgia, serif;
+  font-weight: 900;
+}
+.game-container .game-message.game-over p { color: var(--blood); }
+.game-container .game-message.game-won {
+  background: rgba(40, 26, 4, 0.8);
+}
+.game-container .game-message.game-won p {
+  color: var(--gold-hi);
+  text-shadow: 0 0 30px rgba(226, 179, 60, 0.7);
+}
+
+/* ---------- Tiles ---------- */
+.tile .tile-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-family: "Cinzel", Georgia, serif;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 3px 8px rgba(0, 0, 0, 0.45);
+}
+.tile .tile-num {
+  font-size: 40px;
+  font-weight: 900;
+}
+.tile .tile-color {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 8px;
+  opacity: 0.85;
+}
+.tile.tile-1024 .tile-num,
+.tile.tile-2048 .tile-num { font-size: 32px; }
+.tile.tile-super .tile-num { font-size: 26px; }
+
+/* The Colors, lowest to highest */
+.tile.tile-2    .tile-inner { background: #8e1d17; color: #f6d9cf; }                     /* Red */
+.tile.tile-4    .tile-inner { background: #e48aa3; color: #4a0f22; }                     /* Pink */
+.tile.tile-8    .tile-inner { background: #6e4a2e; color: #f0e0cc; }                     /* Brown */
+.tile.tile-16   .tile-inner { background: #d8641c; color: #fff4e8; }                     /* Orange */
+.tile.tile-32   .tile-inner { background: #2e8049; color: #e6fbe9; }                     /* Green */
+.tile.tile-64   .tile-inner { background: #2456a6; color: #e4eeff; }                     /* Blue */
+.tile.tile-128  .tile-inner { background: #e1bf3a; color: #3b2c00; }                     /* Yellow */
+.tile.tile-256  .tile-inner { background: #6a379e; color: #f2e7ff; }                     /* Violet */
+.tile.tile-512  .tile-inner { background: #7b7f86; color: #f5f5f5; }                     /* Grey */
+.tile.tile-1024 .tile-inner {                                                             /* Obsidian */
+  background: linear-gradient(160deg, #26262b, #0a0a0c);
+  color: #cfd0d8;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18), 0 3px 10px rgba(0, 0, 0, 0.7);
+}
+.tile.tile-2048 .tile-inner {                                                             /* Gold */
+  background: linear-gradient(150deg, #f8e08a 0%, #e2b33c 45%, #a8771c 100%);
+  color: #2b1a00;
+  box-shadow: 0 0 30px 8px rgba(226, 179, 60, 0.55), inset 0 0 0 1px rgba(255, 245, 200, 0.7);
+}
+.tile.tile-super .tile-inner {                                                            /* beyond Gold */
+  background: radial-gradient(circle at 50% 35%, #3a0d0a, #0b0505);
+  color: var(--gold-hi);
+  box-shadow: 0 0 30px 8px rgba(179, 38, 30, 0.6), inset 0 0 0 2px var(--gold);
+}
+
+@media screen and (max-width: 520px) {
+  h1.title .title-sub { font-size: 8px; letter-spacing: 3px; margin-top: 4px; }
+  .game-intro { width: 100%; font-size: 16px; }
+  .tile .tile-num { font-size: 21px; }
+  .tile .tile-color { font-size: 6px; letter-spacing: 1px; margin-top: 4px; }
+  .tile.tile-1024 .tile-num,
+  .tile.tile-2048 .tile-num { font-size: 17px; }
+  .tile.tile-super .tile-num { font-size: 14px; }
+}
